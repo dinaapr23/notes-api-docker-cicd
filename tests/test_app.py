@@ -69,3 +69,6 @@ def test_delete_note(client):
 
     get_res = client.get(f"/notes/{note_id}")
     assert get_res.status_code == 404
+
+def test_simulasi_gagal():
+    assert False
