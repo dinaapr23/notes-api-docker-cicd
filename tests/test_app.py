@@ -14,13 +14,13 @@ def client():
 def test_health_check(client):
     """Quality gate: health endpoint must report healthy status."""
     response = client.get("/health")
-    assert response.status_code == 200
+    assert response.status_code == 999
     assert response.get_json() == {"status": "healthy"}
 
 
 def test_list_notes_empty(client):
     response = client.get("/notes")
-    assert response.status_code == 200
+    assert response.status_code == 999
     assert response.get_json() == []
 
 
@@ -53,7 +53,7 @@ def test_get_note_after_create(client):
     note_id = create_res.get_json()["id"]
 
     get_res = client.get(f"/notes/{note_id}")
-    assert get_res.status_code == 200
+    assert get_res.status_code == 999
     assert get_res.get_json()["title"] == "Judul"
 
 
@@ -65,7 +65,7 @@ def test_delete_note(client):
     note_id = create_res.get_json()["id"]
 
     delete_res = client.delete(f"/notes/{note_id}")
-    assert delete_res.status_code == 200
+    assert delete_res.status_code == 999
 
     get_res = client.get(f"/notes/{note_id}")
     assert get_res.status_code == 404
